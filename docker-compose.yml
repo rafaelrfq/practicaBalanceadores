@@ -31,40 +31,6 @@ services:
     depends_on:   # indicates what to load first
       - db-mysql
 
-  balanceadores-2: # name of the service/container
-    image: rafaelrfq/balanceadores
-    ports:
-      - 8081:8081
-    environment: # environment variables
-      - spring.datasource.url=jdbc:mysql://db-mysql:3306/polls
-      - spring.datasource.username=root
-      - spring.datasource.password=password
-      - MYSQL_HOST=db-mysql
-      - server.port=8081
-    networks: # network to connect containers
-      - balance-network
-    volumes:
-      - balance-volume:/tmp/
-    depends_on: # indicates what to load first
-      - db-mysql
-
-  balanceadores-3: # name of the service/container
-    image: rafaelrfq/balanceadores
-    ports:
-      - 8082:8082
-    environment: # environment variables
-      - spring.datasource.url=jdbc:mysql://db-mysql:3306/polls
-      - spring.datasource.username=root
-      - spring.datasource.password=password
-      - MYSQL_HOST=db-mysql
-      - server.port=8082
-    networks: # network to connect containers
-      - balance-network
-    volumes:
-      - balance-volume:/tmp/
-    depends_on: # indicates what to load first
-      - db-mysql
-
 networks:
   balance-network:
 
