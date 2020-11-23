@@ -9,8 +9,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_DATABASE: 'polls'
-    volumes:
-      - ~/balanceadores/data:/var/lib/mysql
     networks:
       - balance-network
 
