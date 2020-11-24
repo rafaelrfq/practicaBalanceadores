@@ -4,9 +4,12 @@ import edu.pucmm.eict.balanceadores.entities.GradedPoll;
 import edu.pucmm.eict.balanceadores.entities.Poll;
 import edu.pucmm.eict.balanceadores.services.GradedPollServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -15,10 +18,21 @@ public class MainController {
     @Autowired
     private GradedPollServices gradedPollServices;
     private Poll poll = new Poll();
+    @Value("${server.port}")
+    private int port;
 
     @GetMapping("/")
-    public String getHome(Model model, Principal principal){
+    public String getHome(Model model, Principal principal, HttpSession session){
         model.addAttribute("user", principal);
+        Integer count = (Integer) session.getAttribute("count");
+        if(count == null){
+            count = 0;
+        }
+        count ++;
+        session.setAttribute("count", count);
+        model.addAttribute("session", session);
+        model.addAttribute("count", count);
+        model.addAttribute("port", port);
         return "home";
     }
 
