@@ -13,7 +13,7 @@ services:
       - balance-network
 
   balanceadores-1:       # name of the service/container
-    image: rafaelrfq/balanceo
+    image: rafaelrfq/balanceadores
     ports:
       - 8080:8080
     environment:    # environment variables
@@ -30,7 +30,7 @@ services:
       - db-mysql
 
   balanceadores-2:       # name of the service/container
-    image: rafaelrfq/balanceo
+    image: rafaelrfq/balanceadores
     ports:
       - 8081:8081
     environment:    # environment variables
@@ -47,7 +47,7 @@ services:
       - db-mysql
 
   balanceadores-3:       # name of the service/container
-    image: rafaelrfq/balanceo
+    image: rafaelrfq/balanceadores
     ports:
       - 8082:8082
     environment:    # environment variables
